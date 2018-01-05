@@ -1,0 +1,16 @@
+package com.spring.springdemo;
+
+public class HelloSpringApp {
+
+	public static void main(String[] args) {
+		// load the spring configuration file
+		
+		// retrieve bean from spring container
+		
+		// call method on the bean
+		
+		// close the context
+
+	}
+
+}
