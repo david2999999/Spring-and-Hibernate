@@ -1,5 +1,5 @@
 <h1>Learning Spring and Hibernate (Currently in Progress) </h1>
-<p>Learning LEARN key Spring 5 features: Spring Core, Spring Annotations, Spring Java Config, Spring AOP, 
+<p>Learning key Spring 5 features: Spring Core, Spring Annotations, Spring Java Config, Spring AOP, 
 Spring MVC, Spring Security, Hibernate CRUD and Maven </p>
 
 <h2>What Is Spring?</h2>
