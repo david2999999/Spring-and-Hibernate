@@ -20,6 +20,16 @@
     	<!-- set up constructor injection -->
     	<constructor-arg ref="myFortune" />
     </bean>
+    
+    <bean id="myCricketCoach" 
+    		class="com.spring.springdemo.CricketCoach">
+    	 <!-- set up setter injection -->
+		<!--the "name" attribute will call the setFortuneService() -->
+    	 <property name="fortuneService" ref="myFortune"/>
+    	 <!-- inject literal values into fields -->
+    	 <property name="emailAddress" value="hello@gmail.com"/>
+    	 <property name="team" value="Sunrisers"/>
+    </bean>
 <!--     <bean id="myCoach2"
     	class="com.spring.springdemo.TrackCoach">
     </bean>
