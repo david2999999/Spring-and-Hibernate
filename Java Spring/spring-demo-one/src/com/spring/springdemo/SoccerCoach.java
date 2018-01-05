@@ -1,6 +1,13 @@
 package com.spring.springdemo;
 
 public class SoccerCoach implements Coach{
+	
+	private FortuneService HappyFortuneService;
+	
+	
+	public SoccerCoach(FortuneService happyFortuneService) {
+		HappyFortuneService = happyFortuneService;
+	}
 
 	@Override
 	public String getDailyWorkout() {
@@ -9,8 +16,7 @@ public class SoccerCoach implements Coach{
 
 	@Override
 	public String getDailyFortune() {
-		// TODO Auto-generated method stub
-		return null;
+		return HappyFortuneService.getFortune();
 	}
 	
 }
