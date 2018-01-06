@@ -11,4 +11,10 @@ public class BasketballCoach implements Coach {
 		return "Dribble 1 million times";
 	}
 
+	@Override
+	public String getDailyFortune() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
