@@ -1,7 +1,6 @@
 package com.spring.springdemo.mvc;
 
 import javax.servlet.http.HttpServletRequest;
-
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.sun.net.httpserver.HttpServer;
 
 @Controller
+@RequestMapping("/hello")
 public class HelloWorldController {
 
 	// need a controller method to show the initial HTML form
@@ -17,7 +17,6 @@ public class HelloWorldController {
 	public String showForm() {
 		return "helloworld-form";
 	}
-	
 	
 	// need a controller method to process the HTML form
 	@RequestMapping("/processForm")
