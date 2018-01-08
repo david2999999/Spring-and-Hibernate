@@ -26,7 +26,7 @@ public class StudentController {
 	public String processForm(@ModelAttribute("student") Student theStudent) {
 		
 		// theStudent's data will come from the form after the submit button is pressed
-		System.out.println("theStudent : " + theStudent.getFirstName() 
+		System.out.println("theStudent: " + theStudent.getFirstName() 
 										+ " " + theStudent.getLastName());
 		return "student-confirmation";
 	}
