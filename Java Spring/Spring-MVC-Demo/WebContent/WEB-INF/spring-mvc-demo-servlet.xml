@@ -24,6 +24,14 @@
 		<property name="suffix" value=".jsp" />
 	</bean>
 
+
+<!-- 	Load the custom resource resource which was used for error messages -->
+	<bean id="messageSource"
+			class="org.springframework.context.support.ResourceBundleMessageSource">
+			
+		<property name="basenames" value="resources/messages"></property>
+		
+	</bean>
 </beans>
 
 
