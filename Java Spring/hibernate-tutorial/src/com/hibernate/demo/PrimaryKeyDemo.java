@@ -40,7 +40,7 @@ public class PrimaryKeyDemo {
 					
 					System.out.println("Done!");
 				}finally {
-					
+					factory.close();
 				}
 				
 	}

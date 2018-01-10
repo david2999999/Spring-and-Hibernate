@@ -55,7 +55,7 @@ public class ReadStudentDemo {
 			
 			System.out.println("Done!");
 		}finally {
-			
+			factory.close();
 		}
 	}
 
