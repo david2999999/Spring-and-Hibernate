@@ -7,7 +7,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 	<title>Student Form</title>
 </head>
-<body>
+<body>g
 	<form:form action="processForm" modelAttribute="student"> 
 	
 		First Name: <form:input path="firstName"/> <br><br>
@@ -41,13 +41,6 @@
 		<input type="submit" value="Submit"/>
 		
 	</form:form>
-	
-	
-	
-	
-	
-	
-	
 	
 	
 </body>
