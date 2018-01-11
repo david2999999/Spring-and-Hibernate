@@ -24,15 +24,15 @@ public class CreateDemo {
 		
 		try {
 			// create  the objects for association
-//			Instructor tempInstructor = 
-//					new Instructor("David", "Qwerty", "qwerty@gmail.com");
-//			InstructorDetail tempInstructorDetail = 
-//					new InstructorDetail("qwerty@youtube.com", "Soccer");
-			
 			Instructor tempInstructor = 
-					new Instructor("Tina", "Min", "qwerty12@gmail.com");
+					new Instructor("David", "Qwerty", "qwerty@gmail.com");
 			InstructorDetail tempInstructorDetail = 
-					new InstructorDetail("Tina2@youtube.com", "Violin");
+					new InstructorDetail("qwerty@youtube.com", "Soccer");
+			
+//			Instructor tempInstructor = 
+//					new Instructor("Tina", "Min", "qwerty12@gmail.com");
+//			InstructorDetail tempInstructorDetail = 
+//					new InstructorDetail("Tina2@youtube.com", "Violin");
 			// associate the object
 			tempInstructor.setInstructorDetail(tempInstructorDetail);
 			
