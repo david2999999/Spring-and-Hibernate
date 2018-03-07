@@ -35,7 +35,7 @@ public class GetInstructorCoursesDemo {
 			System.out.println("Instructor: " + tempInstructor);
 			
 			// get course for the instructor 
-			System.out.println("Courses: " + tempInstructor.getCourses().get(0).getTitle());
+			System.out.println("Courses: " + tempInstructor.getCourses());
 			
 			//commit transaction
 			session.getTransaction().commit();

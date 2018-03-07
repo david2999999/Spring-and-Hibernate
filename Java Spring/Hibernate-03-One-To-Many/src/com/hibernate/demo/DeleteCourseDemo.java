@@ -4,10 +4,11 @@ import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 
+import com.hibernate.demo.entity.Course;
 import com.hibernate.demo.entity.Instructor;
 import com.hibernate.demo.entity.InstructorDetail;
 
-public class DeleteDemo {
+public class DeleteCourseDemo {
 
 	public static void main(String[] args) {
 		
@@ -16,6 +17,7 @@ public class DeleteDemo {
 						.configure("hibernate.cfg.xml")
 						.addAnnotatedClass(Instructor.class)
 						.addAnnotatedClass(InstructorDetail.class)
+						.addAnnotatedClass(Course.class)
 						.buildSessionFactory();
 		
 		
@@ -25,25 +27,21 @@ public class DeleteDemo {
 		try {
 			// start a transaction
 			session.beginTransaction();
-
-			// get the instructor by primary key
-			int theId = 1;
-			Instructor tempInstructor = session.get(Instructor.class, theId);
-			System.out.println("Found instructor: " + tempInstructor);
 			
-			// delete the instructor
-			if (tempInstructor != null) {
-				System.out.println("Deleting: " + tempInstructor);
-				
-				// Note: this will also delete the detail object because of CASCADE.ALL
-				session.delete(tempInstructor);
-			}
+			// get the course from the database
+			int theId = 10;
+			Course tempCourse = session.get(Course.class, theId);
+			
+			// delete the course
+			System.out.println("Deleting course: " + tempCourse);
+			session.delete(tempCourse);
 			
 			//commit transaction
 			session.getTransaction().commit();
 			
 			System.out.println("Done!");
 		}finally {
+			session.close();
 			factory.close();
 		}
 	}
