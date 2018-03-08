@@ -8,8 +8,9 @@ import com.hibernate.demo.entity.Course;
 import com.hibernate.demo.entity.Instructor;
 import com.hibernate.demo.entity.InstructorDetail;
 import com.hibernate.demo.entity.Review;
+import com.hibernate.demo.entity.Student;
 
-public class CreateCoursesAndReviewsDemo {
+public class AddMoreCoursesForStudentsDemo {
 
 	public static void main(String[] args) {
 		
@@ -20,6 +21,7 @@ public class CreateCoursesAndReviewsDemo {
 						.addAnnotatedClass(InstructorDetail.class)
 						.addAnnotatedClass(Course.class)
 						.addAnnotatedClass(Review.class)
+						.addAnnotatedClass(Student.class)
 						.buildSessionFactory();
 		
 		
@@ -30,19 +32,23 @@ public class CreateCoursesAndReviewsDemo {
 			// start a transaction
 			session.beginTransaction();
 			
-			// create a course
-			Course tempCourse = new Course("Java Spring and Hibernate");
+			// get the student
+			int theId = 1;
+			Student tempStudent = session.get(Student.class, theId);
+			System.out.println("\nLoaded student " + tempStudent);
+			System.out.println("Courses for the student: " + tempStudent.getCourses());
 			
-			// add some reviews
-			tempCourse.addReview(new Review("Great Course!"));
-			tempCourse.addReview(new Review("Need to have Spring Boot"));
-			tempCourse.addReview(new Review("Need a Bigger project"));
-			tempCourse.addReview(new Review("Need Another course"));
+			// create more courses
+			Course tempCourse1 = new Course("C Programming for Beginner");
+			Course tempCourse2 = new Course("Python in Action");
 			
-			// save the course and leverage the cascade all
-			System.out.println("Saving the course: " + tempCourse);
-			System.out.println(tempCourse.getReviews());
-			session.save(tempCourse);
+			// add students to courses
+			tempCourse1.addStudent(tempStudent);
+			tempCourse2.addStudent(tempStudent);
+			
+			// save the courses
+			session.save(tempCourse1);
+			session.save(tempCourse2);
 			
 			//commit transaction
 			session.getTransaction().commit();

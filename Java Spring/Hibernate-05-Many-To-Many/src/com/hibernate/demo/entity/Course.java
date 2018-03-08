@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
@@ -20,7 +21,7 @@ import javax.persistence.Table;
 @Entity
 @Table(name="course")
 public class Course {
-	//define our fields
+
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
@@ -36,7 +37,13 @@ public class Course {
 	@JoinColumn(name="course_id")
 	private List<Review> reviews;
 	
-	@ManyToMany
+	@ManyToMany(fetch=FetchType.LAZY, 
+			cascade= {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REFRESH})
+	@JoinTable(
+			name="course_student",
+			joinColumns=@JoinColumn(name="course_id"),
+			inverseJoinColumns = @JoinColumn(name="student_id")
+			)
 	private List<Student> students;
 	
 	
