@@ -1,5 +1,6 @@
 package com.hibernate.demo;
 
+import org.hibernate.query.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
@@ -8,7 +9,8 @@ import com.hibernate.demo.entity.Course;
 import com.hibernate.demo.entity.Instructor;
 import com.hibernate.demo.entity.InstructorDetail;
 
-public class DeleteCourseDemo {
+@SuppressWarnings("deprecation")
+public class FetchJoinDemo {
 
 	public static void main(String[] args) {
 		
@@ -28,16 +30,28 @@ public class DeleteCourseDemo {
 			// start a transaction
 			session.beginTransaction();
 			
-			// get the course from the database
-			int theId = 10;
-			Course tempCourse = session.get(Course.class, theId);
+			// get the instructor from db
+			int theId = 1;			
 			
-			// delete the course
-			System.out.println("Deleting course: " + tempCourse);
-			session.delete(tempCourse);
+			// Hibernate query with HQL
+			Query<Instructor> query = session.createQuery("select i from Instructor i "
+															+ "JOIN FETCH i.courses " 
+															+ "where i.id=:theInstructorId", Instructor.class);
+			
+			// set parameter on query
+			query.setParameter("theInstructorId", theId);
+			
+			// execute query and get instructor
+			Instructor tempInstructor = query.getSingleResult();
 			
 			//commit transaction
 			session.getTransaction().commit();
+			
+			//close the session
+			session.close();
+			
+			System.out.println("The Session is Closed");
+			System.out.println("Courses: " + tempInstructor.getCourses());
 			
 			System.out.println("Done!");
 		}finally {
