@@ -7,8 +7,9 @@ import org.hibernate.cfg.Configuration;
 import com.hibernate.demo.entity.Course;
 import com.hibernate.demo.entity.Instructor;
 import com.hibernate.demo.entity.InstructorDetail;
+import com.hibernate.demo.entity.Review;
 
-public class DeleteCourseDemo {
+public class GetCoursesAndReviewsDemo {
 
 	public static void main(String[] args) {
 		
@@ -18,6 +19,7 @@ public class DeleteCourseDemo {
 						.addAnnotatedClass(Instructor.class)
 						.addAnnotatedClass(InstructorDetail.class)
 						.addAnnotatedClass(Course.class)
+						.addAnnotatedClass(Review.class)
 						.buildSessionFactory();
 		
 		
@@ -28,13 +30,15 @@ public class DeleteCourseDemo {
 			// start a transaction
 			session.beginTransaction();
 			
-			// get the course from the database
+			// get the course
 			int theId = 10;
 			Course tempCourse = session.get(Course.class, theId);
 			
-			// delete the course
-			System.out.println("Deleting course: " + tempCourse);
-			session.delete(tempCourse);
+			// print the course
+			System.out.println(tempCourse);
+			
+			//print the course reviews
+			System.out.println(tempCourse.getReviews());
 			
 			//commit transaction
 			session.getTransaction().commit();

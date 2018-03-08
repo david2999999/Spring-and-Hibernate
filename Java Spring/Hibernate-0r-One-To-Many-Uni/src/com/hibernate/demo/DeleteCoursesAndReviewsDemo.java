@@ -7,8 +7,9 @@ import org.hibernate.cfg.Configuration;
 import com.hibernate.demo.entity.Course;
 import com.hibernate.demo.entity.Instructor;
 import com.hibernate.demo.entity.InstructorDetail;
+import com.hibernate.demo.entity.Review;
 
-public class CreateCoursesDemo {
+public class DeleteCoursesAndReviewsDemo {
 
 	public static void main(String[] args) {
 		
@@ -18,6 +19,7 @@ public class CreateCoursesDemo {
 						.addAnnotatedClass(Instructor.class)
 						.addAnnotatedClass(InstructorDetail.class)
 						.addAnnotatedClass(Course.class)
+						.addAnnotatedClass(Review.class)
 						.buildSessionFactory();
 		
 		
@@ -28,21 +30,19 @@ public class CreateCoursesDemo {
 			// start a transaction
 			session.beginTransaction();
 			
-			// get the instructor from db
-			int theId = 1;
-			Instructor tempInstructor = session.get(Instructor.class, theId);
+			// get the course
+			int theId = 10;
+			Course tempCourse = session.get(Course.class, theId);
 			
-			// create some courses
-			Course tempCourse1 = new Course("Air Guitar - The Ultimate Guide");
-			Course tempCourse2 = new Course("The Java MasterClass");
+			// print the course
+			System.out.println("Deleting the course !");
+			System.out.println(tempCourse);
 			
-			// add courses to instructor
-			tempInstructor.add(tempCourse1);
-			tempInstructor.add(tempCourse2);
+			// print the course reviews
+			System.out.println(tempCourse.getReviews());
 			
-			// save the courses
-			session.save(tempCourse1);
-			session.save(tempCourse2);
+			// delete the course
+			session.delete(tempCourse);
 			
 			//commit transaction
 			session.getTransaction().commit();

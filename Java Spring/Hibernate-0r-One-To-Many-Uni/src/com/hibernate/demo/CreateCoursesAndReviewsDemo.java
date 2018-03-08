@@ -7,8 +7,9 @@ import org.hibernate.cfg.Configuration;
 import com.hibernate.demo.entity.Course;
 import com.hibernate.demo.entity.Instructor;
 import com.hibernate.demo.entity.InstructorDetail;
+import com.hibernate.demo.entity.Review;
 
-public class GetInstructorCoursesDemo {
+public class CreateCoursesAndReviewsDemo {
 
 	public static void main(String[] args) {
 		
@@ -18,6 +19,7 @@ public class GetInstructorCoursesDemo {
 						.addAnnotatedClass(Instructor.class)
 						.addAnnotatedClass(InstructorDetail.class)
 						.addAnnotatedClass(Course.class)
+						.addAnnotatedClass(Review.class)
 						.buildSessionFactory();
 		
 		
@@ -28,14 +30,19 @@ public class GetInstructorCoursesDemo {
 			// start a transaction
 			session.beginTransaction();
 			
-			// get the instructor from db
-			int theId = 1;
-			Instructor tempInstructor = session.get(Instructor.class, theId);
+			// create a course
+			Course tempCourse = new Course("Java Spring and Hibernate");
 			
-			System.out.println("Instructor: " + tempInstructor);
+			// add some reviews
+			tempCourse.addReview(new Review("Great Course!"));
+			tempCourse.addReview(new Review("Need to have Spring Boot"));
+			tempCourse.addReview(new Review("Need a Bigger project"));
+			tempCourse.addReview(new Review("Need Another course"));
 			
-			// get course for the instructor 
-			System.out.println("Courses: " + tempInstructor.getCourses());
+			// save the course and leverage the cascade all
+			System.out.println("Saving the course: " + tempCourse);
+			System.out.println(tempCourse.getReviews());
+			session.save(tempCourse);
 			
 			//commit transaction
 			session.getTransaction().commit();
