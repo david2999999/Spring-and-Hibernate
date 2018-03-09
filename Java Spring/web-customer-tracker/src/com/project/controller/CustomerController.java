@@ -5,23 +5,25 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.project.dao.CustomerDAO;
 import com.project.entity.Customer;
+import com.project.service.CustomerService;
 
 @Controller
 @RequestMapping("/customer")
 public class CustomerController {
 
-	// need to inject the customer DAO
+	// need to inject customer service
 	@Autowired
-	private CustomerDAO customerDAO;
+	private CustomerService customerService;
 	
-	@RequestMapping("/list")
+	@GetMapping("/list")
 	public String listCustomers(Model theModel) {
-		// get customers from the DAO
-		List<Customer> customers = customerDAO.getCustomer();
+		// get customers from the service layer
+		List<Customer> customers = customerService.getCustomers();
 		
 		// add the customers to the model
 		theModel.addAttribute("customers", customers);
@@ -29,3 +31,13 @@ public class CustomerController {
 		return "list-customers";
 	}
 }
+
+
+
+
+
+
+
+
+
+
