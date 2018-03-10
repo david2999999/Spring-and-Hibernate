@@ -12,7 +12,22 @@ public class MyDemoLoggingAspect {
 	
 	// using @Before advice
 	
-	@Before("execution(public void addAccount())")
+	// Match methods with addAccount in any class
+	// @Before("execution(public void addAccount())")
+	
+	// match only the addAccount method inside the AccountDAO class
+	// @Before("execution(public void com.spring.aopdemo.dao.AccountDAO.addAccount())")
+	
+	// match any method method that starts with add
+	// @Before("execution(public void add*())")
+	
+	// match any method that starts with add
+	// @Before("execution(void add*())")
+
+	// match any method that starts with add and any return type
+	// @Before("execution(* add*())")
+	
+	@Before("execution(* add*())")
 	public void beforeAddAccountAdvice() {
 		
 		System.out.println("EXECUTING @BEFORE ADVICE ON ADDACCOUNT!!");
