@@ -27,7 +27,26 @@ public class MyDemoLoggingAspect {
 	// match any method that starts with add and any return type
 	// @Before("execution(* add*())")
 	
-	@Before("execution(* add*())")
+	// match any method that starts with add and any return type
+	// the argument that is passed in has to be the class Account
+	// @Before("execution(* add*(com.spring.aopdemo.Account))")
+	
+	// match any method that starts with add and any return type
+	// the argument starts with Account class then any number of arguments
+	// @Before("execution(* add*(com.spring.aopdemo.Account, ..))")
+
+	// match any method that starts with add and any return type
+	// Any number of arguments
+	// @Before("execution(* add*(..))")
+	
+	// match any class in the package
+	// match any methods in the class
+	// any number of arguments
+	// any return type
+	// @Before("execution(* com.spring.aopdemo.dao.*.*(..))")
+
+	
+	@Before("execution(* com.spring.aopdemo.dao.*.*(..))")
 	public void beforeAddAccountAdvice() {
 		
 		System.out.println("EXECUTING @BEFORE ADVICE ON ADDACCOUNT!!");
