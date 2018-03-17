@@ -19,14 +19,20 @@
  		Roles: <security:authentication property="principal.authorities"/>
  	</p>
 	<hr>
-		<!-- Add a link to point to /leaders ... this is for the manager -->
+		
 	<p>
-		<a href="${pageContext.request.contextPath}/leaders">Leadership Meeting</a> (only for managers)
-		<br>
-		<a href="${pageContext.request.contextPath}/systems">Systems Meeting</a> (Only for Admins)
+		<security:authorize access="hasRole('MANAGER')">
+			<!-- Add a link to point to /leaders ... this is for the manager -->
+			<a href="${pageContext.request.contextPath}/leaders">Leadership Meeting</a> (only for managers)
+			<br>
+		</security:authorize>
+		
+		<security:authorize access="hasRole('ADMIN')">
+			<!-- Add a link to point to /systems ... this is for the Admins -->
+			<a href="${pageContext.request.contextPath}/systems">Systems Meeting</a> (Only for Admins)
+		</security:authorize>
 	</p>
-	
-	<hr>
+
 	<!-- Add a Logout Button -->
 	<form:form action="${pageContext.request.contextPath}/logout" method="POST">
 		<input type="submit" value="Logout"/>
